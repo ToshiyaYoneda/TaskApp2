@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -13,6 +13,9 @@
 		5720B8F7233B5524009C49B1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5720B8F6233B5524009C49B1 /* Assets.xcassets */; };
 		5720B8FA233B5524009C49B1 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5720B8F8233B5524009C49B1 /* LaunchScreen.storyboard */; };
 		5720B902233D6311009C49B1 /* inputViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5720B901233D6311009C49B1 /* inputViewController.swift */; };
+		5720B904233EC0CB009C49B1 /* Task.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5720B903233EC0CB009C49B1 /* Task.swift */; };
+		5720B908234B6E8D009C49B1 /* Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5720B907234B6E8D009C49B1 /* Category.swift */; };
+		5720B90A234BE047009C49B1 /* CategoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5720B909234BE047009C49B1 /* CategoryViewController.swift */; };
 		63D3447E0A47D969E27447E1 /* Pods_taskapp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 56C6313B2F2C4FB42891FD29 /* Pods_taskapp.framework */; };
 /* End PBXBuildFile section */
 
@@ -27,6 +30,9 @@
 		5720B8F9233B5524009C49B1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		5720B8FB233B5524009C49B1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		5720B901233D6311009C49B1 /* inputViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = inputViewController.swift; sourceTree = "<group>"; };
+		5720B903233EC0CB009C49B1 /* Task.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Task.swift; sourceTree = "<group>"; };
+		5720B907234B6E8D009C49B1 /* Category.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Category.swift; sourceTree = "<group>"; };
+		5720B909234BE047009C49B1 /* CategoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryViewController.swift; sourceTree = "<group>"; };
 		FD55DBBC2E3DCD6D7CC26394 /* Pods-taskapp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-taskapp.release.xcconfig"; path = "Target Support Files/Pods-taskapp/Pods-taskapp.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -63,13 +69,16 @@
 		5720B8EE233B5522009C49B1 /* taskapp */ = {
 			isa = PBXGroup;
 			children = (
+				5720B903233EC0CB009C49B1 /* Task.swift */,
+				5720B907234B6E8D009C49B1 /* Category.swift */,
 				5720B8EF233B5522009C49B1 /* AppDelegate.swift */,
 				5720B8F1233B5522009C49B1 /* ViewController.swift */,
+				5720B901233D6311009C49B1 /* inputViewController.swift */,
+				5720B909234BE047009C49B1 /* CategoryViewController.swift */,
 				5720B8F3233B5522009C49B1 /* Main.storyboard */,
 				5720B8F6233B5524009C49B1 /* Assets.xcassets */,
 				5720B8F8233B5524009C49B1 /* LaunchScreen.storyboard */,
 				5720B8FB233B5524009C49B1 /* Info.plist */,
-				5720B901233D6311009C49B1 /* inputViewController.swift */,
 			);
 			path = taskapp;
 			sourceTree = "<group>";
@@ -88,7 +97,6 @@
 				1B80E2C062E8D6F4E092ED08 /* Pods-taskapp.debug.xcconfig */,
 				FD55DBBC2E3DCD6D7CC26394 /* Pods-taskapp.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -207,8 +215,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5720B904233EC0CB009C49B1 /* Task.swift in Sources */,
+				5720B908234B6E8D009C49B1 /* Category.swift in Sources */,
 				5720B8F2233B5522009C49B1 /* ViewController.swift in Sources */,
 				5720B8F0233B5522009C49B1 /* AppDelegate.swift in Sources */,
+				5720B90A234BE047009C49B1 /* CategoryViewController.swift in Sources */,
 				5720B902233D6311009C49B1 /* inputViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
