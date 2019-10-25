@@ -41,7 +41,7 @@ class inputViewController: UIViewController,UIPickerViewDelegate,UIPickerViewDat
     func pickerView(_ pickerView: UIPickerView,
                     titleForRow row: Int,
                     forComponent component: Int) -> String? {
-
+        
         return self.categoryArray[row].name
     }
     
@@ -58,7 +58,6 @@ class inputViewController: UIViewController,UIPickerViewDelegate,UIPickerViewDat
         categoryPicker.dataSource = self
         if categoryArray.count == 0 {
             categoryPicker.isHidden = true
-            //categoryLabel.text = ""
         }
         categoryPicker.reloadAllComponents()
 
@@ -69,7 +68,17 @@ class inputViewController: UIViewController,UIPickerViewDelegate,UIPickerViewDat
         titleTextField.text = task.title
         contentsTextView.text = task.contents
         datePicker.date = task.date
-        //categoryLabel.text = self.task.category?.name
+        
+        
+        if categoryArray.count != 0 {
+        for i in 0..<categoryArray.count {
+            if categoryArray[i] == task.category {
+                categoryPicker.selectRow(i, inComponent: 0, animated: false)
+                break
+            }else{categoryPicker.selectRow(0, inComponent: 0, animated: false)
+        }
+      }
+    }
         
     }
     
@@ -99,7 +108,6 @@ class inputViewController: UIViewController,UIPickerViewDelegate,UIPickerViewDat
         
         if categoryArray.count == 0 {
             categoryPicker.isHidden = true
-            //categoryLabel.text = ""
         }
         
     }
@@ -142,15 +150,24 @@ class inputViewController: UIViewController,UIPickerViewDelegate,UIPickerViewDat
             }
         }
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        //categoryPicker.reloadAllComponents()
+        if categoryArray.count != 0 {
+            for i in 0..<categoryArray.count {
+                if categoryArray[i] == task.category {
+                    categoryPicker.selectRow(i, inComponent: 0, animated: false)
+                    selectedCategory = categoryArray[i]
+                    break
+                }else{categoryPicker.selectRow(0, inComponent: 0, animated: false)
+                    selectedCategory = categoryArray[0]
+                }
+            }
+        }
 
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+        
     }
-    */
-
+    
 }

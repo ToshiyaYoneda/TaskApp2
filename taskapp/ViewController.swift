@@ -32,19 +32,26 @@ class ViewController: UIViewController,UITableViewDelegate, UITableViewDataSourc
 
         tableView.delegate = self
         tableView.dataSource = self
-        searchBar.delegate = self
+        //searchBar.delegate = self
         
-        searchBar.frame = CGRect(x:0, y:0, width:self.view.frame.width, height:42)
-        searchBar.layer.position = CGPoint(x: self.view.bounds.width/2, y: 89)
-        searchBar.searchBarStyle = UISearchBar.Style.default
-        searchBar.showsSearchResultsButton = false
+        //searchBar.frame = CGRect(x:0, y:0, width:self.view.frame.width, height:42)
+        //searchBar.layer.position = CGPoint(x: self.view.bounds.width/2, y: 89)
+        //searchBar.searchBarStyle = UISearchBar.Style.default
+        //searchBar.showsSearchResultsButton = false
         
-        tableView.tableHeaderView = searchBar
-        searchBar.placeholder = "Categoryを選択"
-        searchBar.showsScopeBar = true
-        searchBar.scopeButtonTitles = ["work"]
+        //tableView.tableHeaderView = searchBar
+        //searchBar.placeholder = "Categoryを選択"
+        //searchBar.showsScopeBar = true
+        //searchBar.scopeButtonTitles = ["work"]
         
         print(Realm.Configuration.defaultConfiguration.fileURL!)
+        
+        
+        
+        
+    }
+    
+    @IBAction func categorySearch(_ sender: Any) {
         
         let actionSheet: UIAlertController = UIAlertController(
             title: "Categoryを選択してください",
@@ -58,45 +65,54 @@ class ViewController: UIViewController,UITableViewDelegate, UITableViewDataSourc
                                                     let predicate = NSPredicate(format: "category.name = %@", category.name)
                                                     self.taskArray = try! Realm().objects(Task.self).filter(predicate)
                                                     self.tableView.reloadData()
-                })
-        )
+            })
+            )
         }
+        
+        actionSheet.addAction(UIAlertAction(title: "全てのタスクを表示",style: .default,
+                                            handler: {
+                                                (action: UIAlertAction!) -> Void in
+                                                self.taskArray = try! Realm().objects(Task.self).sorted(byKeyPath: "date", ascending: false)
+                                                self.tableView.reloadData()
+        })
+        )
+        
+        
         
         let cancel = UIAlertAction(title: "キャンセル", style: UIAlertAction.Style.cancel, handler: {
             (action: UIAlertAction!) in
-
+            
         })
         
         actionSheet.addAction(cancel)
         present(actionSheet, animated: true, completion: nil)
     }
     
-    
 
     // 検索ボタンが押された時に呼ばれる
-    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
-        self.view.endEditing(true)
-        searchBar.showsCancelButton = true
+    //func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+    //    self.view.endEditing(true)
+    //    searchBar.showsCancelButton = true
         
-        let predicate = NSPredicate(format: "category.name = %@", searchBar.text ?? "")
-        taskArray = try! Realm().objects(Task.self).filter(predicate)
+    //    let predicate = NSPredicate(format: "category.name = %@", searchBar.text ?? "")
+    //    taskArray = try! Realm().objects(Task.self).filter(predicate)
         
-        self.tableView.reloadData()
-    }
+    //    self.tableView.reloadData()
+    //}
     
-    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
-       searchBar.text = ""
-       taskArray = try! Realm().objects(Task.self).sorted(byKeyPath: "date", ascending: false)
-       tableView.reloadData()
+    //func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+       //searchBar.text = ""
+    //   taskArray = try! Realm().objects(Task.self).sorted(byKeyPath: "date", ascending: false)
+    //   tableView.reloadData()
 
-    }
+    //}
     
-    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        if searchBar.text == ""{
-            taskArray = try! Realm().objects(Task.self).sorted(byKeyPath: "date", ascending: false)
-            tableView.reloadData()
-        }
-    }
+    //func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+    //    if searchBar.text == ""{
+    //        taskArray = try! Realm().objects(Task.self).sorted(byKeyPath: "date", ascending: false)
+    //        tableView.reloadData()
+    //    }
+    //}
     
     // MARK: UITableViewDataSourceプロトコルのメソッド
     // データの数（＝セルの数）を返すメソッド
@@ -186,30 +202,7 @@ class ViewController: UIViewController,UITableViewDelegate, UITableViewDataSourc
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        let actionSheet: UIAlertController = UIAlertController(
-            title: "Categoryを選択してください",
-            message: nil,
-            preferredStyle: UIAlertController.Style.actionSheet)
-        
-        for category in categoryArray {
-            actionSheet.addAction(UIAlertAction(title: category.name,style: .default,
-                                                handler: {
-                                                    (action: UIAlertAction!) -> Void in
-                                                    let predicate = NSPredicate(format: "category.name = %@", category.name)
-                                                    self.taskArray = try! Realm().objects(Task.self).filter(predicate)
-                                                    self.tableView.reloadData()
-            })
-            )
-        }
-        
-        let cancel = UIAlertAction(title: "キャンセル", style: UIAlertAction.Style.cancel, handler: {
-            (action: UIAlertAction!) in
-            
-        })
-        
-        actionSheet.addAction(cancel)
-        
-        present(actionSheet, animated: true, completion: nil)
+        tableView.reloadData()
         
     }
     

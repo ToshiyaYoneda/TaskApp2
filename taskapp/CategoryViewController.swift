@@ -95,13 +95,13 @@ class CategoryViewController: UIViewController, UITableViewDelegate, UITableView
     }
     
     
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-            let inputViewController:inputViewController = segue.destination as! inputViewController
+    //override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+    //        let inputViewController:inputViewController = segue.destination as! inputViewController
 
-            categoryTableView.reloadData()
-            inputViewController.category = self.category
+    //        categoryTableView.reloadData()
+    //        inputViewController.category = self.category
            
-        }
+    //    }
 
     
     // セルが削除が可能なことを伝えるメソッド
